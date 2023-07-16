@@ -85,6 +85,39 @@ This is the same as requesting `/api/v1/channels/:id/videos` without URL paramet
 }
 ```
 
+##### GET `/api/v1/channels/:id/podcasts`
+
+> URL parameters:
+
+* `continuation`: A continuation token to get the next chunk of items. The token is provided each time this API is requested.
+
+> Response:
+
+```javascript
+{
+	"playlists": [
+		// One or more PlaylistOject
+	],
+	"continuation": continuation
+}
+```
+
+##### GET `/api/v1/channels/:id/releases`
+
+> URL parameters:
+
+* `continuation`: A continuation token to get the next chunk of items. The token is provided each time this API is requested.
+
+> Response:
+
+```javascript
+{
+	"playlists": [
+		// One or more PlaylistOject
+	],
+	"continuation": continuation
+}
+```
 
 ##### GET `/api/v1/channels/:id/shorts`
 
@@ -157,6 +190,91 @@ Please refer to the [Community Post Attachment types](#community-post-attachment
 	}[]
 }
 ```
+
+##### GET `/api/v1/channels/:id/search`
+
+> Schema:
+
+```javascript
+[
+  {
+    type: "video",
+    title: String,
+    videoId: String,
+    author: String,
+    authorId: String,
+    authorUrl: String,
+    videoThumbnails: [
+      {
+        quality: String,
+        url: String,
+        width: Int32,
+        height: Int32
+      }
+    ],
+    description: String,
+    descriptionHtml: String,
+    viewCount: Int64,
+    published: Int64,
+    publishedText: String,
+    lengthSeconds: Int32,
+    liveNow: Bool,
+    paid: Bool,
+    premium: Bool
+  },
+  {
+    type: "playlist",
+    title: String,
+    playlistId: String,
+    author: String,
+    authorId: String,
+    authorUrl: String,
+
+    videoCount: Int32,
+    videos: [
+      {
+        title: String,
+        videoId: String,
+        lengthSeconds: Int32,
+        videoThumbnails: [
+          {
+            quality: String,
+            url: String,
+            width: Int32,
+            height: Int32
+          }
+        ]
+      }
+    ]
+  },
+  {
+    type: "channel",
+    author: String,
+    authorId: String,
+    authorUrl: String,
+
+    authorThumbnails: [
+      {
+        url: String,
+        width: Int32,
+        height: Int32
+      }
+    ],
+    subCount: Int32,
+    videoCount: Int32,
+    description: String,
+    descriptionHtml: String
+  }
+];
+```
+
+Parameters:
+
+```
+q: String
+page: Int32
+```
+
 ###### Community Post Attachment Types
 __VideoAttachment__ 
 See [VideoObject](./common_types.md#videoobject) common type
