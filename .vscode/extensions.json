@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "adisreyaj.swagger-snippets",
+        "42Crunch.vscode-openapi"
+    ]
+}

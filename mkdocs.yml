@@ -41,6 +41,7 @@ nav:
     - 'api/common_types.md'
     - 'api/channels_endpoint.md'
     - 'api/authenticated-endpoints.md'
+    - 'api/openapi.md'
 
 theme:
   name: material
@@ -74,6 +75,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/iv-org/documentation
+plugins: 
+  - render_swagger:
+    javascript: assets/javascript/swagger-ui.bundle.js
+    css: assets/css/swagger-ui.css
 
 markdown_extensions:
   - pymdownx.magiclink

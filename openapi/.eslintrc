@@ -1,0 +1,21 @@
+{
+  "root": true,
+  "env": {
+    "node": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "*.yaml",
+        "*.yml"
+      ],
+      "parser": "yaml-eslint-parser",
+      "extends": [
+        "plugin:yml/recommended"
+      ],
+      "rules": {
+        "yml/no-irregular-whitespace": "off"
+      }
+    }
+  ]
+}

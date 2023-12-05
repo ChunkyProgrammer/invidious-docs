@@ -1,0 +1,10 @@
+{
+    "eslint.probe": [
+        "yml",
+        "yaml"
+    ],
+    "eslint.validate": [
+      "yml",
+      "yaml"
+    ],
+}

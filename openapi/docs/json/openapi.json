@@ -1,0 +1,1209 @@
+{
+  "openapi" : "3.0.3",
+  "info" : {
+    "description" : "This is the api for invidious",
+    "title" : "Invidious",
+    "version" : "1"
+  },
+  "servers" : [ {
+    "url" : "https://invidious.fdn.fr/api/v1"
+  }, {
+    "url" : "https://yt.oelrichsgarcia.de/api/v1"
+  }, {
+    "url" : "https://onion.tube/api/v1"
+  }, {
+    "url" : "https://yt.artemislena.eu/api/v1"
+  }, {
+    "url" : "https://invidious.private.coffee/api/v1"
+  }, {
+    "url" : "https://inv.tux.pizza/api/v1"
+  }, {
+    "url" : "https://inv.citw.lgbt/api/v1"
+  }, {
+    "url" : "https://invidious.einfachzocken.eu/api/v1"
+  }, {
+    "url" : "https://invidious.nerdvpn.de/api/v1"
+  }, {
+    "url" : "https://invidious.perennialte.ch/api/v1"
+  }, {
+    "url" : "https://iv.nboeck.de/api/v1"
+  }, {
+    "url" : "https://invidious.protokolla.fi/api/v1"
+  }, {
+    "url" : "https://yt.cdaut.de/api/v1"
+  }, {
+    "url" : "https://vid.puffyan.us/api/v1"
+  }, {
+    "url" : "https://invidious.io.lol/api/v1"
+  }, {
+    "url" : "https://vid.priv.au/api/v1"
+  }, {
+    "url" : "https://inv.zzls.xyz/api/v1"
+  }, {
+    "url" : "https://inv.us.projectsegfau.lt/api/v1"
+  }, {
+    "url" : "https://invidious.slipfox.xyz/api/v1"
+  }, {
+    "url" : "https://yt.drgnz.club/api/v1"
+  }, {
+    "url" : "https://anontube.lvkaszus.pl/api/v1"
+  }, {
+    "url" : "https://iv.datura.network/api/v1"
+  }, {
+    "url" : "https://iv.ggtyler.dev/api/v1"
+  }, {
+    "url" : "https://invidious.lunar.icu/api/v1"
+  }, {
+    "url" : "https://inv.in.projectsegfau.lt/api/v1"
+  }, {
+    "url" : "https://invidious.asir.dev/api/v1"
+  }, {
+    "url" : "https://iv.melmac.space/api/v1"
+  }, {
+    "url" : "https://invidious.projectsegfau.lt/api/v1"
+  }, {
+    "url" : "https://invidious.privacydev.net/api/v1"
+  } ],
+  "tags" : [ {
+    "description" : "Everything about YouTube channels",
+    "name" : "channel"
+  } ],
+  "paths" : {
+    "/channels/{channelId}" : {
+      "get" : {
+        "description" : "Update an existing pet by Id",
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Channel"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get channel information",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/playlists" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's playlist feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelPlaylistsResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's playlist",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/podcasts" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's podcast feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelPlaylistsResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's podcast feed",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/releases" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's release feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelPlaylistsResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's release feed",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/shorts" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's shorts feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelVideosResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's shorts",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/streams" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's streams feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelVideosResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's streams",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/videos" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's videos feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "the continuation of the channel's videos feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "sort_by",
+          "required" : false,
+          "schema" : {
+            "default" : "newest",
+            "enum" : [ "newest", "popular", "oldest" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelVideosResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's videos",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/channels/{channelId}/community" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "ID of the channel to return",
+          "explode" : false,
+          "in" : "path",
+          "name" : "channelId",
+          "required" : true,
+          "schema" : {
+            "pattern" : "^([Uu][Cc][a-zA-Z0-9_-]{22})$",
+            "type" : "string"
+          },
+          "style" : "simple"
+        }, {
+          "description" : "the continuation of the channel's community feed",
+          "explode" : true,
+          "in" : "query",
+          "name" : "continuation",
+          "required" : false,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ChannelCommunityResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get a channel's community feed",
+        "tags" : [ "channel", "unauthenticated" ]
+      }
+    },
+    "/stats" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/StatsResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "summary" : "Get the stats of an instance",
+        "tags" : [ "misc", "unauthenticated" ]
+      }
+    },
+    "/trending" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "The type of trending feed to fetch",
+          "explode" : true,
+          "in" : "query",
+          "name" : "type",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "music", "gaming", "movies" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "The region to fetch trending from",
+          "explode" : true,
+          "in" : "query",
+          "name" : "region",
+          "required" : false,
+          "schema" : {
+            "default" : "US",
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/VideoObject"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "tags" : [ "unauthenticated" ]
+      }
+    },
+    "/popular" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PopularResponse"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "tags" : [ "unauthenticated" ]
+      }
+    },
+    "/search/suggestions" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "The query to get suggestions for",
+          "explode" : true,
+          "in" : "query",
+          "name" : "q",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/_search_suggestions_get_200_response"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "tags" : [ "search", "unauthenticated" ]
+      }
+    },
+    "/search" : {
+      "get" : {
+        "parameters" : [ {
+          "description" : "The query to search for",
+          "explode" : true,
+          "in" : "query",
+          "name" : "q",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "The query to search for",
+          "explode" : true,
+          "in" : "query",
+          "name" : "page",
+          "required" : true,
+          "schema" : {
+            "type" : "integer"
+          },
+          "style" : "form"
+        }, {
+          "description" : "what to sort by",
+          "explode" : true,
+          "in" : "query",
+          "name" : "sort_by",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "relevance", "rating", "upload_date", "view_count" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "filter search by date",
+          "explode" : true,
+          "in" : "query",
+          "name" : "date",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "hour", "today", "week", "month", "year" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "filter search by duration",
+          "explode" : true,
+          "in" : "query",
+          "name" : "duration",
+          "required" : false,
+          "schema" : {
+            "enum" : [ "short", "long", "medium" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "filter search by type",
+          "explode" : true,
+          "in" : "query",
+          "name" : "type",
+          "required" : false,
+          "schema" : {
+            "default" : "all",
+            "enum" : [ "video", "playlist", "channel", "movie", "show", "all" ],
+            "type" : "string"
+          },
+          "style" : "form"
+        }, {
+          "description" : "filter content by features",
+          "explode" : true,
+          "in" : "query",
+          "name" : "features",
+          "required" : false,
+          "schema" : {
+            "items" : {
+              "enum" : [ "hd", "subtitles", "creative_commons", "3d", "live", "purchased", "4k", "360", "location", "hdr", "vr180" ],
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "style" : "form"
+        } ],
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "items" : {
+                    "$ref" : "#/components/schemas/_search_get_200_response_inner"
+                  },
+                  "type" : "array"
+                }
+              }
+            },
+            "description" : "Successful operation"
+          }
+        },
+        "tags" : [ "search", "unauthenticated" ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Channel" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AuthorObject"
+        } ],
+        "properties" : {
+          "authorBanners" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ImageObject"
+            },
+            "type" : "array"
+          },
+          "authorThumbnails" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ImageObject"
+            },
+            "type" : "array"
+          },
+          "subCount" : {
+            "type" : "integer"
+          },
+          "totalViews" : {
+            "type" : "integer"
+          },
+          "joined" : {
+            "type" : "integer"
+          },
+          "autoGenerated" : {
+            "type" : "boolean"
+          },
+          "isFamilyFriendly" : {
+            "type" : "boolean"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "descriptionHtml" : {
+            "type" : "string"
+          },
+          "allowedRegions" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "tabs" : {
+            "items" : {
+              "example" : "[\"videos\",\"streams\",\"community\"]",
+              "type" : "string"
+            },
+            "type" : "array"
+          },
+          "latestVideos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/VideoObject"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "ImageObject" : {
+        "properties" : {
+          "url" : {
+            "type" : "string"
+          },
+          "width" : {
+            "type" : "integer"
+          },
+          "height" : {
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "ThumbnailObject" : {
+        "properties" : {
+          "quality" : {
+            "type" : "string"
+          },
+          "url" : {
+            "type" : "string"
+          },
+          "width" : {
+            "type" : "integer"
+          },
+          "height" : {
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "VideoObject" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AuthorObject"
+        } ],
+        "properties" : {
+          "type" : {
+            "enum" : [ "video" ],
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "videoId" : {
+            "type" : "string"
+          },
+          "videoThumbnails" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ThumbnailObject"
+            },
+            "type" : "array"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "descriptionHtml" : {
+            "type" : "string"
+          },
+          "viewCount" : {
+            "type" : "integer"
+          },
+          "viewCountText" : {
+            "type" : "string"
+          },
+          "published" : {
+            "type" : "integer"
+          },
+          "publishedText" : {
+            "type" : "string"
+          },
+          "premiereTimestamp" : {
+            "type" : "integer"
+          },
+          "liveNow" : {
+            "type" : "boolean"
+          },
+          "premium" : {
+            "type" : "boolean"
+          },
+          "isUpcoming" : {
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "PlaylistObject" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AuthorObject"
+        } ],
+        "properties" : {
+          "type" : {
+            "enum" : [ "playlist" ],
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "playlistId" : {
+            "type" : "string"
+          },
+          "playlistThumbnail" : {
+            "type" : "string"
+          },
+          "author" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "ChannelObject" : {
+        "allOf" : [ {
+          "$ref" : "#/components/schemas/AuthorObject"
+        } ],
+        "properties" : {
+          "authorThumbnails" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ThumbnailObject"
+            },
+            "type" : "array"
+          },
+          "autoGenerated" : {
+            "type" : "boolean"
+          },
+          "subCount" : {
+            "type" : "integer"
+          },
+          "videoCount" : {
+            "type" : "integer"
+          },
+          "description" : {
+            "type" : "string"
+          },
+          "descriptionHtml" : {
+            "type" : "string"
+          },
+          "channelHandle" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "AuthorObject" : {
+        "properties" : {
+          "author" : {
+            "example" : "Mr Beast",
+            "type" : "string"
+          },
+          "authorId" : {
+            "example" : "UCX6OQ3DkcsbYNE6H8uQQuVA",
+            "type" : "string"
+          },
+          "authorUrl" : {
+            "example" : "https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA",
+            "type" : "string"
+          },
+          "authorVerified" : {
+            "example" : true,
+            "type" : "boolean"
+          }
+        },
+        "type" : "object"
+      },
+      "ImageAttachment" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "image" ],
+            "type" : "string"
+          },
+          "imageThumbnails" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ImageObject"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "MultiImageAttachment" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "multiImage" ],
+            "type" : "string"
+          },
+          "images" : {
+            "items" : {
+              "items" : {
+                "$ref" : "#/components/schemas/ImageObject"
+              },
+              "type" : "array"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "PollAttachment" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "poll" ],
+            "type" : "string"
+          },
+          "totalVotes" : {
+            "type" : "integer"
+          },
+          "choices" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PollAttachment_choices_inner"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "choices", "totalVotes", "type" ],
+        "type" : "object"
+      },
+      "QuizAttachment" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "quiz" ],
+            "type" : "string"
+          },
+          "totalVotes" : {
+            "type" : "integer"
+          },
+          "choices" : {
+            "items" : {
+              "$ref" : "#/components/schemas/QuizAttachment_choices_inner"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "choices", "totalVotes", "type" ],
+        "type" : "object"
+      },
+      "UnknownAttachment" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "unknown" ],
+            "type" : "string"
+          },
+          "error" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "error", "type" ],
+        "type" : "object"
+      },
+      "ChannelVideosResponse" : {
+        "properties" : {
+          "videos" : {
+            "items" : {
+              "$ref" : "#/components/schemas/VideoObject"
+            },
+            "type" : "array"
+          },
+          "continuation" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "videos" ],
+        "type" : "object"
+      },
+      "ChannelPlaylistsResponse" : {
+        "properties" : {
+          "playlists" : {
+            "items" : {
+              "$ref" : "#/components/schemas/PlaylistObject"
+            },
+            "type" : "array"
+          },
+          "continuation" : {
+            "type" : "string"
+          }
+        },
+        "required" : [ "playlists" ],
+        "type" : "object"
+      },
+      "ChannelCommunityResponse" : {
+        "properties" : {
+          "authorId" : {
+            "type" : "string"
+          },
+          "comments" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ChannelCommunityResponse_comments_inner"
+            },
+            "type" : "array"
+          }
+        },
+        "required" : [ "authorId", "comments" ],
+        "type" : "object"
+      },
+      "StatsResponse" : {
+        "properties" : {
+          "version" : {
+            "type" : "string"
+          },
+          "software" : {
+            "$ref" : "#/components/schemas/StatsResponse_software"
+          },
+          "openRegistrations" : {
+            "type" : "boolean"
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/StatsResponse_usage"
+          },
+          "metadata" : {
+            "$ref" : "#/components/schemas/StatsResponse_metadata"
+          },
+          "playback" : {
+            "$ref" : "#/components/schemas/StatsResponse_playback"
+          }
+        },
+        "type" : "object"
+      },
+      "PopularResponse" : {
+        "items" : {
+          "$ref" : "#/components/schemas/PopularResponse_inner"
+        },
+        "type" : "array"
+      },
+      "_search_suggestions_get_200_response" : {
+        "properties" : {
+          "query" : {
+            "type" : "string"
+          },
+          "suggestions" : {
+            "items" : {
+              "type" : "string"
+            },
+            "type" : "array"
+          }
+        },
+        "type" : "object"
+      },
+      "_search_get_200_response_inner" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/VideoObject"
+        }, {
+          "$ref" : "#/components/schemas/ChannelObject"
+        }, {
+          "$ref" : "#/components/schemas/PlaylistObject"
+        } ]
+      },
+      "PollAttachment_choices_inner" : {
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "image" : {
+            "$ref" : "#/components/schemas/ImageObject"
+          }
+        },
+        "required" : [ "text" ],
+        "type" : "object"
+      },
+      "QuizAttachment_choices_inner" : {
+        "properties" : {
+          "text" : {
+            "type" : "string"
+          },
+          "isCorrect" : {
+            "type" : "boolean"
+          }
+        },
+        "required" : [ "isCorrect", "text" ],
+        "type" : "object"
+      },
+      "ChannelCommunityResponse_comments_inner_attachment" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/ImageAttachment"
+        }, {
+          "$ref" : "#/components/schemas/PollAttachment"
+        }, {
+          "$ref" : "#/components/schemas/QuizAttachment"
+        }, {
+          "$ref" : "#/components/schemas/VideoObject"
+        }, {
+          "$ref" : "#/components/schemas/MultiImageAttachment"
+        }, {
+          "$ref" : "#/components/schemas/PlaylistObject"
+        } ],
+        "type" : "object"
+      },
+      "ChannelCommunityResponse_comments_inner" : {
+        "properties" : {
+          "attachment" : {
+            "$ref" : "#/components/schemas/ChannelCommunityResponse_comments_inner_attachment"
+          },
+          "author" : {
+            "type" : "string"
+          },
+          "authorId" : {
+            "type" : "string"
+          },
+          "authorIsChannelOwner" : {
+            "type" : "boolean"
+          },
+          "authorUrl" : {
+            "type" : "string"
+          },
+          "authorThumbnails" : {
+            "items" : {
+              "items" : {
+                "$ref" : "#/components/schemas/ImageObject"
+              },
+              "type" : "array"
+            },
+            "type" : "array"
+          },
+          "commentId" : {
+            "type" : "string"
+          },
+          "content" : {
+            "type" : "string"
+          },
+          "contentHtml" : {
+            "type" : "string"
+          },
+          "isEdited" : {
+            "type" : "boolean"
+          },
+          "likeCount" : {
+            "type" : "number"
+          },
+          "published" : {
+            "type" : "number"
+          },
+          "publishedText" : {
+            "type" : "string"
+          },
+          "replyCount" : {
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "StatsResponse_software" : {
+        "properties" : {
+          "name" : {
+            "enum" : [ "invidious" ],
+            "type" : "string"
+          },
+          "version" : {
+            "type" : "string"
+          },
+          "branch" : {
+            "type" : "string"
+          }
+        },
+        "type" : "object"
+      },
+      "StatsResponse_usage_users" : {
+        "properties" : {
+          "total" : {
+            "type" : "integer"
+          },
+          "activeHalfyear" : {
+            "type" : "integer"
+          },
+          "activeMonth" : {
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "StatsResponse_usage" : {
+        "properties" : {
+          "users" : {
+            "$ref" : "#/components/schemas/StatsResponse_usage_users"
+          }
+        },
+        "type" : "object"
+      },
+      "StatsResponse_metadata" : {
+        "properties" : {
+          "updatedAt" : {
+            "type" : "integer"
+          },
+          "lastChannelRefreshAt" : {
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      },
+      "StatsResponse_playback" : {
+        "properties" : {
+          "totalRequests" : {
+            "type" : "integer"
+          },
+          "successfulRequests" : {
+            "type" : "integer"
+          },
+          "ratio" : {
+            "maximum" : 1,
+            "minimum" : 0,
+            "type" : "number"
+          }
+        },
+        "type" : "object"
+      },
+      "PopularResponse_inner" : {
+        "properties" : {
+          "type" : {
+            "enum" : [ "shortVideo" ],
+            "type" : "string"
+          },
+          "title" : {
+            "type" : "string"
+          },
+          "videoId" : {
+            "type" : "string"
+          },
+          "videoThumbnails" : {
+            "items" : {
+              "$ref" : "#/components/schemas/ThumbnailObject"
+            },
+            "type" : "array"
+          },
+          "lengthSeconds" : {
+            "type" : "number"
+          },
+          "author" : {
+            "type" : "string"
+          },
+          "authorId" : {
+            "type" : "string"
+          },
+          "authorUrl" : {
+            "type" : "string"
+          },
+          "published" : {
+            "type" : "number"
+          },
+          "publishedText" : {
+            "example" : "1 day ago",
+            "type" : "string"
+          },
+          "viewCount" : {
+            "type" : "integer"
+          }
+        },
+        "type" : "object"
+      }
+    }
+  }
+}
