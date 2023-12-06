@@ -63,8 +63,8 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
-  logo: images/invidious.png # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#logo
-  favicon: images/favicon.ico # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#favicon
+  logo: assets/images/invidious.png # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#logo
+  favicon: assets/images/favicon.ico # https://squidfunk.github.io/mkdocs-material/setup/changing-the-logo-and-icons/#favicon
   features:
     - navigation.tracking # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#anchor-tracking
     - navigation.expand # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#navigation-expansion
@@ -75,10 +75,6 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/iv-org/documentation
-plugins: 
-  - render_swagger:
-    javascript: assets/javascript/swagger-ui.bundle.js
-    css: assets/css/swagger-ui.css
 
 markdown_extensions:
   - pymdownx.magiclink
@@ -89,3 +85,8 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details # https://facelessuser.github.io/pymdown-extensions/extensions/details/
   - admonition
+
+# plugins:
+#   - render_swagger:
+#       allow_arbitrary_locations: true
+#   - search

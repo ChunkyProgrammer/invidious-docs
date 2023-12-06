@@ -19,6 +19,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+
+      - name: install node dependencies
+        run: npm run ci
+
+      - name: Update swagger.json file
+        run: npm run build
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 

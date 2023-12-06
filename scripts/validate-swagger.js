@@ -1,7 +1,7 @@
 import SwaggerParser from "@apidevtools/swagger-parser";
 
 const parser = new SwaggerParser()
-const swaggerFileLocation = './openapi/swagger.yaml'
+const swaggerFileLocation = './swagger.yaml'
 
 parser.validate(swaggerFileLocation, (err, api) => {
   if (err) {

@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import { parse, stringify } from 'yaml'
 
-const swaggerFileLocation = './openapi/swagger.yaml'
+const swaggerFileLocation = './swagger.yaml'
 const file = readFileSync(swaggerFileLocation, 'utf8')
 let parsed = parse(file)
 

@@ -1,0 +1,836 @@
+openapi: 3.0.3
+info:
+  title: Invidious
+  description: This is the api for invidious
+  version: "1"
+servers:
+  - url: https://invidious.fdn.fr/api/v1
+  - url: https://yt.oelrichsgarcia.de/api/v1
+  - url: https://onion.tube/api/v1
+  - url: https://yt.artemislena.eu/api/v1
+  - url: https://invidious.no-logs.com/api/v1
+  - url: https://invidious.private.coffee/api/v1
+  - url: https://inv.tux.pizza/api/v1
+  - url: https://inv.citw.lgbt/api/v1
+  - url: https://invidious.einfachzocken.eu/api/v1
+  - url: https://invidious.nerdvpn.de/api/v1
+  - url: https://invidious.perennialte.ch/api/v1
+  - url: https://iv.nboeck.de/api/v1
+  - url: https://invidious.protokolla.fi/api/v1
+  - url: https://yt.cdaut.de/api/v1
+  - url: https://vid.puffyan.us/api/v1
+  - url: https://invidious.io.lol/api/v1
+  - url: https://vid.priv.au/api/v1
+  - url: https://inv.zzls.xyz/api/v1
+  - url: https://inv.us.projectsegfau.lt/api/v1
+  - url: https://invidious.slipfox.xyz/api/v1
+  - url: https://yt.drgnz.club/api/v1
+  - url: https://anontube.lvkaszus.pl/api/v1
+  - url: https://iv.datura.network/api/v1
+  - url: https://iv.ggtyler.dev/api/v1
+  - url: https://invidious.lunar.icu/api/v1
+  - url: https://inv.in.projectsegfau.lt/api/v1
+  - url: https://invidious.asir.dev/api/v1
+  - url: https://iv.melmac.space/api/v1
+  - url: https://invidious.projectsegfau.lt/api/v1
+  - url: https://invidious.privacydev.net/api/v1
+tags:
+  - name: channel
+    description: Everything about YouTube channels
+paths:
+  /channels/{channelId}:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get channel information
+      description: Update an existing pet by Id
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Channel"
+  /channels/{channelId}/playlists:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's playlist
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's playlist feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelPlaylistsResponse"
+  /channels/{channelId}/podcasts:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's podcast feed
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's podcast feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelPlaylistsResponse"
+  /channels/{channelId}/releases:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's release feed
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's release feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelPlaylistsResponse"
+  /channels/{channelId}/shorts:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's shorts
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's shorts feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelVideosResponse"
+  /channels/{channelId}/streams:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's streams
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's streams feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelVideosResponse"
+  /channels/{channelId}/videos:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's videos
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's videos feed
+          required: false
+          schema:
+            type: string
+        - name: sort_by
+          in: query
+          description: the continuation of the channel's videos feed
+          required: false
+          schema:
+            type: string
+            enum:
+              - newest
+              - popular
+              - oldest
+            default: newest
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelVideosResponse"
+  /channels/{channelId}/community:
+    get:
+      tags:
+        - channel
+        - unauthenticated
+      summary: Get a channel's community feed
+      parameters:
+        - name: channelId
+          in: path
+          description: ID of the channel to return
+          required: true
+          schema:
+            type: string
+            pattern: ^([Uu][Cc][a-zA-Z0-9_-]{22})$
+        - name: continuation
+          in: query
+          description: the continuation of the channel's community feed
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChannelCommunityResponse"
+  /stats:
+    get:
+      tags:
+        - misc
+        - unauthenticated
+      summary: Get the stats of an instance
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StatsResponse"
+  /trending:
+    get:
+      tags:
+        - unauthenticated
+      parameters:
+        - name: type
+          in: query
+          description: The type of trending feed to fetch
+          required: false
+          schema:
+            type: string
+            enum:
+              - music
+              - gaming
+              - movies
+        - name: region
+          in: query
+          description: The region to fetch trending from
+          required: false
+          schema:
+            type: string
+            default: US
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VideoObject"
+  /popular:
+    get:
+      tags:
+        - unauthenticated
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PopularResponse"
+  /search/suggestions:
+    get:
+      tags:
+        - search
+        - unauthenticated
+      parameters:
+        - name: q
+          in: query
+          description: The query to get suggestions for
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  query:
+                    type: string
+                  suggestions:
+                    type: array
+                    items:
+                      type: string
+  /search:
+    get:
+      tags:
+        - search
+        - unauthenticated
+      parameters:
+        - name: q
+          in: query
+          description: The query to search for
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: The query to search for
+          required: true
+          schema:
+            type: integer
+        - name: sort_by
+          in: query
+          description: what to sort by
+          required: false
+          schema:
+            type: string
+            enum:
+              - relevance
+              - rating
+              - upload_date
+              - view_count
+        - name: date
+          in: query
+          description: filter search by date
+          required: false
+          schema:
+            type: string
+            enum:
+              - hour
+              - today
+              - week
+              - month
+              - year
+        - name: duration
+          in: query
+          description: filter search by duration
+          required: false
+          schema:
+            type: string
+            enum:
+              - short
+              - long
+              - medium
+        - name: type
+          in: query
+          description: filter search by type
+          required: false
+          schema:
+            type: string
+            default: all
+            enum:
+              - video
+              - playlist
+              - channel
+              - movie
+              - show
+              - all
+        - name: features
+          in: query
+          description: filter content by features
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - hd
+                - subtitles
+                - creative_commons
+                - 3d
+                - live
+                - purchased
+                - 4k
+                - '360'
+                - location
+                - hdr
+                - vr180
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  oneOf:
+                    - $ref: "#/components/schemas/VideoObject"
+                    - $ref: "#/components/schemas/ChannelObject"
+                    - $ref: "#/components/schemas/PlaylistObject"
+components:
+  schemas:
+    Channel:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AuthorObject"
+      properties:
+        authorBanners:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImageObject"
+        authorThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImageObject"
+        subCount:
+          type: integer
+        totalViews:
+          type: integer
+        joined:
+          type: integer
+        autoGenerated:
+          type: boolean
+        isFamilyFriendly:
+          type: boolean
+        description:
+          type: string
+        descriptionHtml:
+          type: string
+        allowedRegions:
+          type: array
+          items:
+            type: string
+        tabs:
+          type: array
+          items:
+            type: string
+            example:
+              - videos
+              - streams
+              - community
+        latestVideos:
+          type: array
+          items:
+            $ref: "#/components/schemas/VideoObject"
+    ImageObject:
+      type: object
+      properties:
+        url:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    ThumbnailObject:
+      type: object
+      properties:
+        quality:
+          type: string
+        url:
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
+    VideoObject:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AuthorObject"
+      properties:
+        type:
+          type: string
+          enum:
+            - video
+        title:
+          type: string
+        videoId:
+          type: string
+        videoThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ThumbnailObject"
+        description:
+          type: string
+        descriptionHtml:
+          type: string
+        viewCount:
+          type: integer
+        viewCountText:
+          type: string
+        published:
+          type: integer
+        publishedText:
+          type: string
+        premiereTimestamp:
+          type: integer
+        liveNow:
+          type: boolean
+        premium:
+          type: boolean
+        isUpcoming:
+          type: boolean
+    PlaylistObject:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AuthorObject"
+      properties:
+        type:
+          type: string
+          enum:
+            - playlist
+        title:
+          type: string
+        playlistId:
+          type: string
+        playlistThumbnail:
+          type: string
+        author:
+          type: string
+    ChannelObject:
+      type: object
+      allOf:
+        - $ref: "#/components/schemas/AuthorObject"
+      properties:
+        authorThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ThumbnailObject"
+        autoGenerated:
+          type: boolean
+        subCount:
+          type: integer
+        videoCount:
+          type: integer
+        description:
+          type: string
+        descriptionHtml:
+          type: string
+        channelHandle:
+          type: string
+    AuthorObject:
+      type: object
+      properties:
+        author:
+          type: string
+          example: Mr Beast
+        authorId:
+          type: string
+          example: UCX6OQ3DkcsbYNE6H8uQQuVA
+        authorUrl:
+          type: string
+          example: https://www.youtube.com/channel/UCX6OQ3DkcsbYNE6H8uQQuVA
+        authorVerified:
+          type: boolean
+          example: true
+    ImageAttachment:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - image
+        imageThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImageObject"
+    MultiImageAttachment:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - multiImage
+        images:
+          type: array
+          items:
+            type: array
+            items:
+              $ref: "#/components/schemas/ImageObject"
+    PollAttachment:
+      type: object
+      required:
+        - type
+        - totalVotes
+        - choices
+      properties:
+        type:
+          type: string
+          enum:
+            - poll
+        totalVotes:
+          type: integer
+        choices:
+          type: array
+          items:
+            type: object
+            required:
+              - text
+            properties:
+              text:
+                type: string
+              image:
+                $ref: "#/components/schemas/ImageObject"
+    QuizAttachment:
+      type: object
+      required:
+        - type
+        - totalVotes
+        - choices
+      properties:
+        type:
+          type: string
+          enum:
+            - quiz
+        totalVotes:
+          type: integer
+        choices:
+          type: array
+          items:
+            type: object
+            required:
+              - text
+              - isCorrect
+            properties:
+              text:
+                type: string
+              isCorrect:
+                type: boolean
+    UnknownAttachment:
+      type: object
+      required:
+        - type
+        - error
+      properties:
+        type:
+          type: string
+          enum:
+            - unknown
+        error:
+          type: string
+    ChannelVideosResponse:
+      type: object
+      required:
+        - videos
+      properties:
+        videos:
+          type: array
+          items:
+            $ref: "#/components/schemas/VideoObject"
+        continuation:
+          type: string
+    ChannelPlaylistsResponse:
+      type: object
+      required:
+        - playlists
+      properties:
+        playlists:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlaylistObject"
+        continuation:
+          type: string
+    ChannelCommunityResponse:
+      type: object
+      required:
+        - authorId
+        - comments
+      properties:
+        authorId:
+          type: string
+        comments:
+          type: array
+          items:
+            type: object
+            properties:
+              attachment:
+                type: object
+                oneOf:
+                  - $ref: "#/components/schemas/ImageAttachment"
+                  - $ref: "#/components/schemas/PollAttachment"
+                  - $ref: "#/components/schemas/QuizAttachment"
+                  - $ref: "#/components/schemas/VideoObject"
+                  - $ref: "#/components/schemas/MultiImageAttachment"
+                  - $ref: "#/components/schemas/PlaylistObject"
+              author:
+                type: string
+              authorId:
+                type: string
+              authorIsChannelOwner:
+                type: boolean
+              authorUrl:
+                type: string
+              authorThumbnails:
+                type: array
+                items:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/ImageObject"
+              commentId:
+                type: string
+              content:
+                type: string
+              contentHtml:
+                type: string
+              isEdited:
+                type: boolean
+              likeCount:
+                type: number
+              published:
+                type: number
+              publishedText:
+                type: string
+              replyCount:
+                type: number
+    StatsResponse:
+      type: object
+      properties:
+        version:
+          type: string
+        software:
+          type: object
+          properties:
+            name:
+              type: string
+              enum:
+                - invidious
+            version:
+              type: string
+            branch:
+              type: string
+        openRegistrations:
+          type: boolean
+        usage:
+          type: object
+          properties:
+            users:
+              type: object
+              properties:
+                total:
+                  type: integer
+                activeHalfyear:
+                  type: integer
+                activeMonth:
+                  type: integer
+        metadata:
+          type: object
+          properties:
+            updatedAt:
+              type: integer
+            lastChannelRefreshAt:
+              type: integer
+        playback:
+          type: object
+          properties:
+            totalRequests:
+              type: integer
+            successfulRequests:
+              type: integer
+            ratio:
+              type: number
+              minimum: 0
+              maximum: 1
+    PopularVideo:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - shortVideo
+        title:
+          type: string
+        videoId:
+          type: string
+        videoThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ThumbnailObject"
+        lengthSeconds:
+          type: number
+        author:
+          type: string
+        authorId:
+          type: string
+        authorUrl:
+          type: string
+        published:
+          type: number
+        publishedText:
+          type: string
+          example: 1 day ago
+        viewCount:
+          type: integer
+    PopularResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PopularVideo"

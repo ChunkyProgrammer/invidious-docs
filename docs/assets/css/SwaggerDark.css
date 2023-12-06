@@ -1,0 +1,82 @@
+/* general + theme fixes */
+.swagger-ui .info {
+    margin: 20px 0;
+}
+.swagger-ui .scheme-container {
+    padding: 15px 0;
+    background-color: var(--md-default-bg-color--lightest);
+}
+
+.swagger-ui select {
+    color: var(--md-primary-fg-color--lightest);
+    background-color: var(--md-primary-fg-color--dark) url("data:image/svg+xml;charset=utf-8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 20 20\" fill=\"var(--md-default-fg-color)\"><path d=\"M13.418 7.859a.695.695 0 0 1 .978 0 .68.68 0 0 1 0 .969l-3.908 3.83a.697.697 0 0 1-.979 0l-3.908-3.83a.68.68 0 0 1 0-.969.695.695 0 0 1 .978 0L10 11l3.418-3.141z\"/></svg>") right 10px center no-repeat
+}
+
+code,
+.md-typeset code {
+    color: var(--md-default-fg-color);
+    background-color: var(--md-code-bg-color)
+}
+
+.swagger-ui,
+.swagger-ui .info .title,
+.swagger-ui .opblock-tag,
+.swagger-ui .info li,
+.swagger-ui .info p,
+.swagger-ui .info table,
+.swagger-ui .opblock-tag small,
+.swagger-ui .opblock .opblock-summary-description,
+.swagger-ui .opblock .opblock-summary-operation-id, 
+.swagger-ui .opblock .opblock-summary-path, 
+.swagger-ui .opblock .opblock-summary-path__deprecated,
+.swagger-ui table thead tr td,
+.swagger-ui table thead tr th,
+.swagger-ui .parameter__name,
+.swagger-ui .model {
+    color: var(--md-default-fg-color);
+}
+
+.swagger-ui .opblock-description-wrapper p,
+.swagger-ui .opblock-external-docs-wrapper p,
+.swagger-ui .opblock-title_normal p,
+.swagger-ui .response-col_status,
+.swagger-ui .response-col_links,
+.swagger-ui .opblock .opblock-section-header h4,
+.swagger-ui .opblock-description-wrapper,
+.swagger-ui .opblock-external-docs-wrapper,
+.swagger-ui .opblock-title_normal,
+.swagger-ui section.models h4,
+.swagger-ui .model-title {
+    color: var(--md-default-fg-color-lightest)
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: var(--md-accent-fg-color);
+}
+
+.swagger-ui .opblock .opblock-section-header {
+    background: var(--md-default-bg-color--light);
+}
+
+.swagger-ui .btn {
+    color: inherit;
+}
+
+svg.arrow {
+    fill: var(--md-default-fg-color);
+}
+
+.swagger-ui input[type=email],
+.swagger-ui input[type=file],
+.swagger-ui input[type=password],
+.swagger-ui input[type=search],
+.swagger-ui input[type=text],
+.swagger-ui textarea,
+.swagger-ui input[type=email].invalid,
+.swagger-ui input[type=file].invalid,
+.swagger-ui input[type=password].invalid,
+.swagger-ui input[type=search].invalid,
+.swagger-ui input[type=text].invalid,
+.swagger-ui textarea.invalid {
+    background: unset;
+}

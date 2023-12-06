@@ -8,6 +8,7 @@ servers:
   - url: https://yt.oelrichsgarcia.de/api/v1
   - url: https://onion.tube/api/v1
   - url: https://yt.artemislena.eu/api/v1
+  - url: https://invidious.no-logs.com/api/v1
   - url: https://invidious.private.coffee/api/v1
   - url: https://inv.tux.pizza/api/v1
   - url: https://inv.citw.lgbt/api/v1
@@ -799,35 +800,37 @@ components:
               type: number
               minimum: 0
               maximum: 1
+    PopularVideo:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - shortVideo
+        title:
+          type: string
+        videoId:
+          type: string
+        videoThumbnails:
+          type: array
+          items:
+            $ref: "#/components/schemas/ThumbnailObject"
+        lengthSeconds:
+          type: number
+        author:
+          type: string
+        authorId:
+          type: string
+        authorUrl:
+          type: string
+        published:
+          type: number
+        publishedText:
+          type: string
+          example: 1 day ago
+        viewCount:
+          type: integer
     PopularResponse:
       type: array
       items:
-        type: object
-        properties:
-          type:
-            type: string
-            enum:
-              - shortVideo
-          title:
-            type: string
-          videoId:
-            type: string
-          videoThumbnails:
-            type: array
-            items:
-              $ref: "#/components/schemas/ThumbnailObject"
-          lengthSeconds:
-            type: number
-          author:
-            type: string
-          authorId:
-            type: string
-          authorUrl:
-            type: string
-          published:
-            type: number
-          publishedText:
-            type: string
-            example: 1 day ago
-          viewCount:
-            type: integer
+        $ref: "#/components/schemas/PopularVideo"

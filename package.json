@@ -15,22 +15,16 @@
     "yaml-eslint-parser": "^1.2.2"
   },
   "scripts": {
-    "build": "run-p update-servers lint validate create-json-swagger copy-json-swagger",
+    "build": "run-s update-servers copy-swagger",
+    "update-servers": "node ./scripts/update-servers.js",
+    "copy-swagger": "node ./scripts/copy-open-api-yaml.js",
+
+    "lint-validate": "run-p lint validate",
     "lint": "eslint --ext .yml,.yaml ./openapi/",
-    "validate": "node ./openapi/scripts/validate-swagger.js",
-    "update-servers": "node ./openapi/scripts/update-servers.js",
+    "validate": "node ./scripts/validate-swagger.js",
+
     "build-clients": "run-s build-client-*",
-    "build-client-ruby": "openapi-generator-cli generate -g ruby -i ./openapi/swagger.yaml -o ./openapi/dist/ruby-client",
-    "build-client-typescript": "openapi-generator-cli generate -g typescript-axios -i ./openapi/swagger.yaml -o ./openapi/dist/ts-client",
-    "build-client-csharp": "openapi-generator-cli generate -g csharp -i ./openapi/swagger.yaml -o ./openapi/dist/csharp-client",
-    "build-client-python": "openapi-generator-cli generate -g python -i ./openapi/swagger.yaml -o ./openapi/dist/python-client",
-    "build-client-kotlin": "openapi-generator-cli generate -g kotlin -i ./openapi/swagger.yaml -o ./openapi/dist/kotlin-client",
-    "build-client-dart": "openapi-generator-cli generate -g dart -i ./openapi/swagger.yaml -o ./openapi/dist/dart-client",
-    "build-client-rust": "openapi-generator-cli generate -g rust -i ./openapi/swagger.yaml -o ./openapi/dist/rust-client",
-    "build-client-swift": "openapi-generator-cli generate -g swift5 -i ./openapi/swagger.yaml -o ./openapi/dist/swift5-client",
-    "build-client-go": "openapi-generator-cli generate -g go -i ./openapi/swagger.yaml -o ./openapi/dist/go-client",
-    "build-client-crystal": "openapi-generator-cli generate -g crystal -i ./openapi/swagger.yaml -o ./openapi/dist/crystal-client",
-    "copy-json-swagger": "node ./openapi/scripts/copy-open-api-json.js",
-    "create-json-swagger": "openapi-generator-cli generate -g openapi -i ./openapi/swagger.yaml -o ./openapi/docs/json"
+    "build-client-typescript": "openapi-generator-cli generate -g typescript-axios -i ./swagger.yaml --additional-properties=supportsES6=true,withInterfaces=true -o ./dist/ts-client",
+    "build-client-crystal": "openapi-generator-cli generate -g crystal -i ./swagger.yaml --additional-properties=moduleName=InvidiousAPIClient,shardAuthor=InvidiousTeam -o ./dist/crystal-client"
   }
 }
